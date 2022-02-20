@@ -1,16 +1,16 @@
 # How To Run
-#frontend
--> at cli
-npm install
-npm start
-
-#backend
--> at API/.env file -> setup environment
--> at cli
-cd API
-composer update
-php artisan migrate
-php artisan serve
+#frontend\
+-> at cli\
+npm install\
+npm start\
+\
+#backend\
+-> at API/.env file -> setup environment\
+-> at cli\
+cd API\
+composer update\
+php artisan migrate\
+php artisan serve\
 
 
 

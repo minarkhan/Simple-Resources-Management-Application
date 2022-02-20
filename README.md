@@ -36,6 +36,6 @@ $ npm install
 ### 6. Run FrontEnd
 ```sh
 $ npm start
-$ open localhost:8000
+$ open http://localhost:3000
 ```
 # Happy Coding...

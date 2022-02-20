@@ -12,7 +12,8 @@ export default function SubNav() {
                 <Navbar.Brand href="/visitor">Visitor Dashboard</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/visitor">File</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav.Link href="/visitor/htmlsnippet">HTML Snippet</Nav.Link>
+                    <Nav.Link href="/visitor/link">Link</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

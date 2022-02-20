@@ -11,7 +11,8 @@ export default function SubNav() {
                 <Navbar.Brand href="/">Admin Dashboard</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/">File</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav.Link href="/htmlsnippet">HTML Snippet</Nav.Link>
+                    <Nav.Link href="/link">Link</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

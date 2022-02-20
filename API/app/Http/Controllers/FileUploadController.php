@@ -72,6 +72,7 @@ class FileUploadController extends Controller
      */
     public function update(Request $request, fileUpload $fileUpload)
     {
+        
         $request->validate([
             'title'=>'required',
             'description'=>'required',

@@ -30,7 +30,7 @@ class ProductController extends Controller
         $request->validate([
             'title'=>'required',
             'description'=>'required',
-            'image'=>'required|image'
+            // 'image'=>'required|image'
         ]);
 
         try{

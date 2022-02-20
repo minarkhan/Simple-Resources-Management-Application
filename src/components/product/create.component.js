@@ -1,11 +1,11 @@
+import axios from 'axios';
 import React, { useState } from "react";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import axios from 'axios'
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom'
 
 export default function CreateProduct() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export default function CreateProduct() {
         <div className="col-12 col-sm-12 col-md-6">
           <div className="card">
             <div className="card-body">
-              <h4 className="card-title">Create Product</h4>
+              <h4 className="card-title">New File Upaload</h4>
               <hr />
               <div className="form-wrapper">
                 {

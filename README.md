@@ -10,7 +10,7 @@ npm start\
 cd API\
 composer update\
 php artisan migrate\
-php artisan serve\
+php artisan serve
 
 
 

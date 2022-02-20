@@ -26,20 +26,17 @@ import HtmlSnippetIndex from "./visitor/components/htmlsnippet/list.component";
 
 function App() {
   return (<Router>
-    <Navbar bg="primary">
+    <Navbar bg="primary" variant="dark" className='text-white'>
       <Container>
-        <Link to={"/"} className="navbar-brand text-white">
-        Simple Resources Management Application
-        </Link>
-        <Link to={"/"} className="text-white">
-        Admin
-        </Link>
-        <Link to={"/visitor"} className="text-white">
-        visitor
-        </Link>
+        <Navbar.Brand href="/visitor">Simple Resources Management Application</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="/">Admin</Nav.Link>
+          <Nav.Link href="/visitor">visitor</Nav.Link>
+        </Nav>
       </Container>
     </Navbar>
-    <Container className="mt-5">
+
+    <Container className="">
       <Row>
         <Col md={12}>
           <Routes>
@@ -53,9 +50,9 @@ function App() {
             <Route path='/link/new' element={<LinkNew />} />
             <Route path='/visitor/link' element={<LinkListIndex />} />
             <Route path='/htmlsnippet' element={<HtmlSnippetList />} />
-            <Route path='/htmlsnippet/edit/:id' element={<HtmlSnippetEdit/>} />
-            <Route path='/htmlsnippet/create' element={<HtmlSnippetNew/>} />
-            <Route path='/visitor/htmlsnippet' element={<HtmlSnippetIndex/>} />
+            <Route path='/htmlsnippet/edit/:id' element={<HtmlSnippetEdit />} />
+            <Route path='/htmlsnippet/create' element={<HtmlSnippetNew />} />
+            <Route path='/visitor/htmlsnippet' element={<HtmlSnippetIndex />} />
           </Routes>
         </Col>
       </Row>

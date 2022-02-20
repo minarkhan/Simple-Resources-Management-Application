@@ -1,3 +1,22 @@
+# How To Run
+#frontend
+-> at cli
+npm install
+npm start
+
+#backend
+-> at API/.env file -> setup environment
+-> at cli
+cd API
+composer update
+php artisan migrate
+php artisan serve
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

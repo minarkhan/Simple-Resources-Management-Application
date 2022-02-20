@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button'
 import axios from 'axios';
-import Swal from 'sweetalert2'
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Nav from "react-bootstrap/Nav";
-import SubNav from './components/SubNav';
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import SubNav from './../SubNav';
 
-export default function Index() {
 
-    const [fileUploads, setFileUploads] = useState([])
+export default function List() {
+
+    const [links, setlinks] = useState([])
 
     useEffect(() => {
-        fetchFileUploads()
+        fetchlinks()
     }, [])
 
-    const fetchFileUploads = async() => {
-        await axios.get(`http://localhost:8000/api/fileUploads`).then(({ data }) => {
-            setFileUploads(data)
+    const fetchlinks = async() => {
+        await axios.get(`http://localhost:8000/api/links`).then(({ data }) => {
+            setlinks(data)
         })
     }
 
-    const deleteProduct = async(id) => {
+    const deleteLink = async(id) => {
         const isConfirm = await Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -41,12 +35,12 @@ export default function Index() {
             return;
         }
 
-        await axios.delete(`http://localhost:8000/api/fileUploads/${id}`).then(({ data }) => {
+        await axios.delete(`http://localhost:8000/api/links/${id}`).then(({ data }) => {
             Swal.fire({
                 icon: "success",
                 text: data.message
             })
-            fetchFileUploads()
+            fetchlinks()
         }).catch(({ response: { data } }) => {
             Swal.fire({
                 text: data.message,
@@ -55,7 +49,8 @@ export default function Index() {
         })
     }
 
-    return ( < >
+    return ( <
+        >
         <
         SubNav / >
         <
@@ -65,7 +60,7 @@ export default function Index() {
         <
         div className = 'col-12' >
         <
-        h3 > File List < /h3> <
+        h3 > Link < /h3> <
         /div> <
         div className = "col-12" >
         <
@@ -80,23 +75,20 @@ export default function Index() {
         tr >
         <
         th > Title < /th> <
-        th > Description < /th> <
-        th > File < /th> <
+        th > Link < /th> <
         /tr> <
         /thead> <
         tbody > {
-            fileUploads.length > 0 && (
-                fileUploads.map((row, key) => ( <
+            links.length > 0 && (
+                links.map((row, key) => ( <
                     tr key = { key } >
                     <
                     td > { row.title } < /td> <
-                    td > { row.description } < /td> <
                     td >
                     <
-                    a target = '_black'
-                    role = "button"
-                    href = { `http://localhost:8000/storage/fileUpload/image/${row.image}` }
-                    download = "nameOfFiel" > Download < /a> { /* <a target='_black' className='btn btn-primary' href={`http://localhost:8000/storage/product/image/${row.image}`}>file</a> */ } { /* <img width="50px" src={`http://localhost:8000/storage/product/image/${row.image}`} /> */ } <
+                    a title = { row.new_tab == 'yes' ? 'Open in a new tab' : 'Click Here' }
+                    target = { row.new_tab == 'yes' ? '_blank' : '' }
+                    href = { row.link } > { row.link } < /a> <
                     /td> <
                     /tr>
                 ))

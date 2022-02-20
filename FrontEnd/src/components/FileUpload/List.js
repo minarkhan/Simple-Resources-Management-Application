@@ -3,14 +3,10 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Nav from "react-bootstrap/Nav";
-import SubNav from './components/SubNav';
+import SubNav from './../../admin/SubNav';
 
-export default function Index() {
+
+export default function List() {
 
     const [fileUploads, setFileUploads] = useState([])
 
@@ -55,7 +51,8 @@ export default function Index() {
         })
     }
 
-    return ( < >
+    return ( <
+        >
         <
         SubNav / >
         <
@@ -65,7 +62,10 @@ export default function Index() {
         <
         div className = 'col-12' >
         <
-        h3 > File List < /h3> <
+        Link className = 'btn btn-primary mb-2 float-end'
+        to = { "/fileUpload/new" } >
+        New File Upaload <
+        /Link> <
         /div> <
         div className = "col-12" >
         <
@@ -82,6 +82,7 @@ export default function Index() {
         th > Title < /th> <
         th > Description < /th> <
         th > File < /th> <
+        th > Actions < /th> <
         /tr> <
         /thead> <
         tbody > {
@@ -93,10 +94,20 @@ export default function Index() {
                     td > { row.description } < /td> <
                     td >
                     <
-                    a target = '_black'
-                    role = "button"
-                    href = { `http://localhost:8000/storage/fileUpload/image/${row.image}` }
+                    a download href = { `http://localhost:8000/storage/fileUpload/image/${row.image}` }
                     download = "nameOfFiel" > Download < /a> { /* <a target='_black' className='btn btn-primary' href={`http://localhost:8000/storage/product/image/${row.image}`}>file</a> */ } { /* <img width="50px" src={`http://localhost:8000/storage/product/image/${row.image}`} /> */ } <
+                    /td> <
+                    td >
+                    <
+                    Link to = { `/fileUpload/edit/${row.id}` }
+                    className = 'btn btn-success me-2' >
+                    Edit <
+                    /Link> <
+                    Button variant = "danger"
+                    onClick = {
+                        () => deleteProduct(row.id) } >
+                    Delete <
+                    /Button> <
                     /td> <
                     /tr>
                 ))

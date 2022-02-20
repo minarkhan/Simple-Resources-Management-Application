@@ -21,12 +21,9 @@ class LinkController extends Controller
 
     public function store(Request $request)
     {
-        // return $request;
         $request->validate([
             'title'=>'required',
             'link'=>'required',
-            // 'new_tab'=>'required',
-            // 'image'=>'required|image'
         ]);
 
         try{
@@ -73,7 +70,6 @@ class LinkController extends Controller
         $request->validate([
             'title'=>'required',
             'link'=>'required',
-            // 'new_tab'=>'required',
         ]);
 
         try{
@@ -82,7 +78,6 @@ class LinkController extends Controller
             $link->link = $request->link;
             $link->new_tab = $request->new_tab == 'true' ? 'yes': 'no';
             $link->save();
-            // return $link;
 
             return response()->json([
                 'message'=>'link Created Successfully!!'

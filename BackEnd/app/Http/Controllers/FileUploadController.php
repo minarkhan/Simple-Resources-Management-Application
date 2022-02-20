@@ -27,11 +27,9 @@ class FileUploadController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $request->validate([
             'title'=>'required',
             'description'=>'required',
-            // 'image'=>'required|image'
         ]);
 
         try{
@@ -72,7 +70,7 @@ class FileUploadController extends Controller
      */
     public function update(Request $request, fileUpload $fileUpload)
     {
-        
+
         $request->validate([
             'title'=>'required',
             'description'=>'required',

@@ -22,11 +22,9 @@ class HtmlSnippetController extends Controller
 
     public function store(Request $request)
     {
-        // return $request;
         $request->validate([
             'title'=>'required',
             'description'=>'required',
-            // 'html_snippet'=>'required',
         ]);
 
         try{
@@ -55,14 +53,12 @@ class HtmlSnippetController extends Controller
      */
     public function htmlSnippet_show( $id)
     {
-        // return 'minar';
         return response()->json([
             'htmlSnippet'=> HtmlSnippet::find($id),
         ]);
     }
     public function show(HtmlSnippet $htmlSnippet)
     {
-        // return 'minar';
         return response()->json([
             'htmlSnippet'=>$htmlSnippet
         ]);
@@ -77,11 +73,9 @@ class HtmlSnippetController extends Controller
      */
     public function update(Request $request, HtmlSnippet $htmlSnippet)
     {
-        // return  $request->id;
         $request->validate([
             'title'=>'required',
             'description'=>'required',
-            // 'new_tab'=>'required',
         ]);
 
         try{
@@ -90,7 +84,6 @@ class HtmlSnippetController extends Controller
             $htmlSnippet->description = $request->description;
             $htmlSnippet->html_snippet = $request->html_snippet;
             $htmlSnippet->save();
-            // return $htmlSnippet;
 
             return response()->json([
                 'message'=>'HTML Snippet Updated Successfully!!'
@@ -111,7 +104,6 @@ class HtmlSnippetController extends Controller
      */
     public function htmlsnippets_delete($id)
     {
-        // return $htmlSnippet;
         try {
             $htmlSnippet = HtmlSnippet::find($id);
             $htmlSnippet->delete();

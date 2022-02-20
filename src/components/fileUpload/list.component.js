@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import SubNav from './../../admin/subnav';
+
 
 export default function List() {
 
-    const [products, setProducts] = useState([])
+    const [fileUploads, setFileUploads] = useState([])
 
     useEffect(() => {
-        fetchProducts()
+        fetchFileUploads()
     }, [])
 
-    const fetchProducts = async () => {
-        await axios.get(`http://localhost:8000/api/products`).then(({ data }) => {
-            setProducts(data)
+    const fetchFileUploads = async () => {
+        await axios.get(`http://localhost:8000/api/fileUploads`).then(({ data }) => {
+            setFileUploads(data)
         })
     }
 
@@ -35,12 +37,12 @@ export default function List() {
             return;
         }
 
-        await axios.delete(`http://localhost:8000/api/products/${id}`).then(({ data }) => {
+        await axios.delete(`http://localhost:8000/api/fileUploads/${id}`).then(({ data }) => {
             Swal.fire({
                 icon: "success",
                 text: data.message
             })
-            fetchProducts()
+            fetchFileUploads()
         }).catch(({ response: { data } }) => {
             Swal.fire({
                 text: data.message,
@@ -50,10 +52,12 @@ export default function List() {
     }
 
     return (
+        <>
+        <SubNav />
         <div className="container">
             <div className="row">
                 <div className='col-12'>
-                    <Link className='btn btn-primary mb-2 float-end' to={"/product/create"}>
+                    <Link className='btn btn-primary mb-2 float-end' to={"/fileUpload/new"}>
                         New File Upaload
                     </Link>
                 </div>
@@ -71,18 +75,18 @@ export default function List() {
                                 </thead>
                                 <tbody>
                                     {
-                                        products.length > 0 && (
-                                            products.map((row, key) => (
+                                        fileUploads.length > 0 && (
+                                            fileUploads.map((row, key) => (
                                                 <tr key={key}>
                                                     <td>{row.title}</td>
                                                     <td>{row.description}</td>
                                                     <td>
-                                                        <a target='_black' role="button" href={`http://localhost:8000/storage/product/image/${row.image}`} download="nameOfFiel">Download</a>
+                                                        <a download href={`http://localhost:8000/storage/fileUpload/image/${row.image}`} download="nameOfFiel">Download</a>
                                                         {/* <a target='_black' className='btn btn-primary' href={`http://localhost:8000/storage/product/image/${row.image}`}>file</a> */}
                                                         {/* <img width="50px" src={`http://localhost:8000/storage/product/image/${row.image}`} /> */}
                                                     </td>
                                                     <td>
-                                                        <Link to={`/product/edit/${row.id}`} className='btn btn-success me-2'>
+                                                        <Link to={`/fileUpload/edit/${row.id}`} className='btn btn-success me-2'>
                                                             Edit
                                                         </Link>
                                                         <Button variant="danger" onClick={() => deleteProduct(row.id)}>
@@ -100,5 +104,6 @@ export default function List() {
                 </div>
             </div>
         </div>
+        </>
     )
 }

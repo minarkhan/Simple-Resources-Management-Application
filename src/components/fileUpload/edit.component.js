@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SubNav from './../../admin/subnav';
 
 export default function EditUser() {
   const navigate = useNavigate();
@@ -18,12 +19,12 @@ export default function EditUser() {
   const [validationError,setValidationError] = useState({})
 
   useEffect(()=>{
-    fetchProduct()
+    fetchFileUpload()
   },[])
 
-  const fetchProduct = async () => {
-    await axios.get(`http://localhost:8000/api/products/${id}`).then(({data})=>{
-      const { title, description } = data.product
+  const fetchFileUpload = async () => {
+    await axios.get(`http://localhost:8000/api/fileUploads/${id}`).then(({data})=>{
+      const { title, description } = data.fileUpload
       setTitle(title)
       setDescription(description)
     }).catch(({response:{data}})=>{
@@ -38,7 +39,7 @@ export default function EditUser() {
 		setImage(event.target.files[0]);
 	};
 
-  const updateProduct = async (e) => {
+  const updateFileUpload = async (e) => {
     e.preventDefault();
 
     const formData = new FormData()
@@ -49,7 +50,7 @@ export default function EditUser() {
       formData.append('image', image)
     }
 
-    await axios.post(`http://localhost:8000/api/products/${id}`, formData).then(({data})=>{
+    await axios.post(`http://localhost:8000/api/fileUploads/${id}`, formData).then(({data})=>{
       Swal.fire({
         icon:"success",
         text:data.message
@@ -68,6 +69,8 @@ export default function EditUser() {
   }
 
   return (
+    <>
+        <SubNav />
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 col-sm-12 col-md-6">
@@ -93,7 +96,7 @@ export default function EditUser() {
                     </div>
                   )
                 }
-                <Form onSubmit={updateProduct}>
+                <Form onSubmit={updateFileUpload}>
                   <Row>
                       <Col>
                         <Form.Group controlId="Name">
@@ -132,5 +135,6 @@ export default function EditUser() {
         </div>
       </div>
     </div>
+    </>
   )
 }

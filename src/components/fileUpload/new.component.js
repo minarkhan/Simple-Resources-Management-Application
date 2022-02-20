@@ -6,8 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SubNav from './../../admin/subnav';
 
-export default function CreateProduct() {
+export default function New() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("")
@@ -19,7 +20,7 @@ export default function CreateProduct() {
 		setImage(event.target.files[0]);
 	};
 
-  const createProduct = async (e) => {
+  const createFileUpload = async (e) => {
     e.preventDefault();
 
     const formData = new FormData()
@@ -28,7 +29,7 @@ export default function CreateProduct() {
     formData.append('description', description)
     formData.append('image', image)
 
-    await axios.post(`http://localhost:8000/api/products`, formData).then(({data})=>{
+    await axios.post(`http://localhost:8000/api/fileUploads`, formData).then(({data})=>{
       Swal.fire({
         icon:"success",
         text:data.message
@@ -47,6 +48,8 @@ export default function CreateProduct() {
   }
 
   return (
+    <>
+        <SubNav />
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 col-sm-12 col-md-6">
@@ -72,7 +75,7 @@ export default function CreateProduct() {
                     </div>
                   )
                 }
-                <Form onSubmit={createProduct}>
+                <Form onSubmit={createFileUpload}>
                   <Row>
                       <Col>
                         <Form.Group controlId="Name">
@@ -111,5 +114,6 @@ export default function CreateProduct() {
         </div>
       </div>
     </div>
+    </>
   )
 }

@@ -2,7 +2,7 @@
 
 ### 1. Clone Repository
 ```sh
-$ git clone https://github.com/minarkhan/Simple-Resources-Management-Application.git
+$ git clone https://github.com/minarkhan/Simple-resources-management-application-using-Laravel-and-React..git
 ```
 
 ### 2. BackEnd Installation
